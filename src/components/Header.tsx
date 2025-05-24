@@ -14,10 +14,10 @@ export function Header({ onAddNote }: HeaderProps) {
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-2">
             <div className="h-8 w-8 rounded-lg bg-gradient-to-br from-primary/20 to-primary/10 flex items-center justify-center">
-              <span className="text-lg font-bold text-primary">N</span>
+              <span className="text-lg font-bold text-primary">M</span>
             </div>
             <h1 className="text-2xl font-bold bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
-              Notes
+              MyNotes
             </h1>
           </div>
           
@@ -26,8 +26,8 @@ export function Header({ onAddNote }: HeaderProps) {
               onClick={onAddNote}
               className="bg-gradient-to-r from-primary to-primary/90 hover:from-primary/90 hover:to-primary/80 transition-all duration-200"
             >
-              <Plus className="h-4 w-4 mr-2" />
-              Add Note
+              <Plus className="h-4 w-4 md:mr-2" />
+              <span className="hidden md:inline">Add Note</span>
             </Button>
             <ThemeToggle />
           </div>

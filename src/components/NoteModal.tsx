@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { Note } from '../types/note';
 import { Button } from './ui/button';
@@ -73,7 +72,6 @@ export function NoteModal({ isOpen, onClose, onSave, note }: NoteModalProps) {
               placeholder="Enter note title..."
               value={title}
               onChange={(e) => setTitle(e.target.value)}
-              className="border-2 focus:border-primary"
             />
           </div>
           <div className="space-y-2">
@@ -83,7 +81,6 @@ export function NoteModal({ isOpen, onClose, onSave, note }: NoteModalProps) {
               placeholder="Enter tag (e.g., Finance, Personal, Fitness)..."
               value={tag}
               onChange={(e) => setTag(e.target.value)}
-              className="border-2 focus:border-primary"
             />
           </div>
           <div className="space-y-2">
@@ -93,7 +90,7 @@ export function NoteModal({ isOpen, onClose, onSave, note }: NoteModalProps) {
               placeholder="Enter note description..."
               value={description}
               onChange={(e) => setDescription(e.target.value)}
-              className="min-h-[100px] border-2 focus:border-primary resize-none"
+              className="min-h-[100px] resize-none"
             />
           </div>
         </div>
