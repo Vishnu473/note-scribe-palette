@@ -1,10 +1,10 @@
-
 import { useState } from 'react';
 import { Note } from '../types/note';
 import { useLocalStorage } from '../hooks/useLocalStorage';
 import { Header } from '../components/Header';
 import { NotesGrid } from '../components/NotesGrid';
 import { NoteModal } from '../components/NoteModal';
+import { Footer } from '../components/Footer';
 import { toast } from '../hooks/use-toast';
 
 const Index = () => {
@@ -82,6 +82,8 @@ const Index = () => {
           onDeleteNote={handleDeleteNote}
         />
       </main>
+
+      <Footer />
 
       <NoteModal
         isOpen={isModalOpen}
