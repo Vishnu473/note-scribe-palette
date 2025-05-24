@@ -11,13 +11,6 @@ import {
 } from './ui/dialog';
 import { Input } from './ui/input';
 import { Label } from './ui/label';
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from './ui/select';
 import { Textarea } from './ui/textarea';
 
 interface NoteModalProps {
@@ -30,7 +23,7 @@ interface NoteModalProps {
 export function NoteModal({ isOpen, onClose, onSave, note }: NoteModalProps) {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
-  const [tag, setTag] = useState<'Finance' | 'Personal' | 'Fitness'>('Personal');
+  const [tag, setTag] = useState('');
 
   useEffect(() => {
     if (note) {
@@ -40,7 +33,7 @@ export function NoteModal({ isOpen, onClose, onSave, note }: NoteModalProps) {
     } else {
       setTitle('');
       setDescription('');
-      setTag('Personal');
+      setTag('');
     }
   }, [note, isOpen]);
 
@@ -51,7 +44,7 @@ export function NoteModal({ isOpen, onClose, onSave, note }: NoteModalProps) {
       ...(note && { id: note.id }),
       title: title.trim(),
       description: description.trim(),
-      tag,
+      tag: tag.trim() || 'General',
     });
 
     onClose();
@@ -60,7 +53,7 @@ export function NoteModal({ isOpen, onClose, onSave, note }: NoteModalProps) {
   const handleClose = () => {
     setTitle('');
     setDescription('');
-    setTag('Personal');
+    setTag('');
     onClose();
   };
 
@@ -85,16 +78,13 @@ export function NoteModal({ isOpen, onClose, onSave, note }: NoteModalProps) {
           </div>
           <div className="space-y-2">
             <Label htmlFor="tag">Tag</Label>
-            <Select value={tag} onValueChange={(value: 'Finance' | 'Personal' | 'Fitness') => setTag(value)}>
-              <SelectTrigger className="border-2 focus:border-primary">
-                <SelectValue />
-              </SelectTrigger>
-              <SelectContent className="bg-background border-2">
-                <SelectItem value="Personal">Personal</SelectItem>
-                <SelectItem value="Finance">Finance</SelectItem>
-                <SelectItem value="Fitness">Fitness</SelectItem>
-              </SelectContent>
-            </Select>
+            <Input
+              id="tag"
+              placeholder="Enter tag (e.g., Finance, Personal, Fitness)..."
+              value={tag}
+              onChange={(e) => setTag(e.target.value)}
+              className="border-2 focus:border-primary"
+            />
           </div>
           <div className="space-y-2">
             <Label htmlFor="description">Description</Label>

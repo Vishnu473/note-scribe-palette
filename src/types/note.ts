@@ -3,7 +3,7 @@ export interface Note {
   id: string;
   title: string;
   description: string;
-  tag: 'Finance' | 'Personal' | 'Fitness';
+  tag: string;
   createdAt: string;
   updatedAt: string;
 }

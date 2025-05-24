@@ -11,10 +11,25 @@ interface NoteCardProps {
   onDelete: (id: string) => void;
 }
 
-const tagColors = {
-  Finance: 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200',
-  Personal: 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200',
-  Fitness: 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200'
+// Generate a consistent color for any tag string
+const getTagColor = (tag: string) => {
+  const colors = [
+    'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200',
+    'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200',
+    'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200',
+    'bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200',
+    'bg-pink-100 text-pink-800 dark:bg-pink-900 dark:text-pink-200',
+    'bg-indigo-100 text-indigo-800 dark:bg-indigo-900 dark:text-indigo-200',
+    'bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-200',
+    'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200'
+  ];
+  
+  // Simple hash function to get consistent color for same tag
+  let hash = 0;
+  for (let i = 0; i < tag.length; i++) {
+    hash = tag.charCodeAt(i) + ((hash << 5) - hash);
+  }
+  return colors[Math.abs(hash) % colors.length];
 };
 
 export function NoteCard({ note, onEdit, onDelete }: NoteCardProps) {
@@ -32,7 +47,7 @@ export function NoteCard({ note, onEdit, onDelete }: NoteCardProps) {
         <div className="flex items-start justify-between">
           <div className="flex items-center space-x-2">
             <Tag className="h-4 w-4 text-muted-foreground" />
-            <Badge className={tagColors[note.tag]} variant="secondary">
+            <Badge className={getTagColor(note.tag)} variant="secondary">
               {note.tag}
             </Badge>
           </div>
